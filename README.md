@@ -31,3 +31,12 @@ En palabras sencillas una accion que se realiza detras de otra
 ```
 ## Nueva
 En la principal en vez de import se usara use y en los index.scss se usara el @forward que es al archivo que se esta apuntando
+
+# Habilitar 1rem=10px
+```
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+```
+Con este codigo se habilita que 1rem sea a 10px y es muchisimo mejor trabajar asi

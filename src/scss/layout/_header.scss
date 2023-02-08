@@ -1,0 +1,48 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+//se puede anidar y ya compilado css hace su trabajo pero tampoco es de abusar teniendo muchas anidaciones
+.header{
+    background-color: v.$verde;
+
+    h1{
+        color: v.$blanco;
+        text-align: center;
+        @include m.tablet {
+            margin: 0;
+        }
+    }
+    .contenido-header{
+        padding: 2rem;
+        @include m.tablet {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+//se agrega & para eliminar un espacio no deseado a la hora de que css compila
+.navegacion-principal{
+
+    @include m.tablet {
+        display: flex;
+        gap: 2rem;
+    }
+
+    a{
+        display: block; //para que los enlaces vayan de arriba hacia abajo
+        text-align: center;
+        color: v.$blanco;
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+
+        @include m.tablet {
+            margin:0;
+        }
+
+        &:hover{
+            color: v.$amarillo;
+        }
+    }
+}
