@@ -2,7 +2,7 @@ const {src, dest, watch} = require('gulp');
 const sass = require("gulp-sass")(require('sass'));
 
 function css(done){
-    src('src/scss/app.scss') //identificar archivo de sass
+    src('src/scss/**/*.scss') //identificar archivo de sass, los * identifican a los demas archivos scss
     .pipe(sass()) //compilarlo con los pipes
     .pipe(dest("build/css"));//almacenar en disco duro con los dest
 
@@ -10,7 +10,7 @@ function css(done){
 }
 
 function dev(done){
-    watch('src/scss/app.scss', css)
+    watch('src/scss/**/*.scss', css)
 
     done()
 }
