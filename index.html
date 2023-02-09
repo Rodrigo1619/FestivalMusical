@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="build/css/app.css">
 </head>
 <body>
+    <!-- Para el navbar -->
     <header class="header">
         <div class="contenedor contenido-header">
             <h1>Rock & EDM Festival</h1>
@@ -22,5 +23,21 @@
             </nav>
         </div>
     </header>
+
+    <!-- Para el contenedor del video -->
+    <div class="video">
+        <div class="overlay">
+            <div class="contenedor contenido-video">
+                <h2>Rock & EDM Festival</h2>
+                <p>Febrero 9, Soyapango, El Salvador</p>
+            </div>
+        </div>
+        <video autoplay muted loop>
+            <!-- si el navegador no encuentra el formato mp4, buscara la seguna opcion y asi sucesivamente -->
+            <source src="video/concierto.mp4" type="video/mp4">
+            <source src="video/concierto.ogg" type="video/ogg">
+            <source src="video/concierto.webm" type="video/webm">
+        </video>
+    </div>
 </body>
 </html>
