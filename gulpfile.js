@@ -5,6 +5,8 @@ const sass = require("gulp-sass")(require('sass'));
 const plumber = require('gulp-plumber');
 
 //para la conversion de imagenes
+const cache = require('gulp-cache');
+const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 
 function css(done){
@@ -16,13 +18,23 @@ function css(done){
     done();//avisa cuando se ha llegado al final de la funcion y no de error en consola
 }
 
-function versionWebp(done){
+function imagenes(done){
+    const opciones = {
+        optimizationLevel : 3
+    };
 
+    src('src/img/**/*.{png,jpg}')
+        .pipe(cache(imagemin(opciones)))//guarda la optimizacion de las imagenes en cache
+        .pipe(dest('build/img'))
+
+    done();
+}
+
+function versionWebp(done){
     //opciones para la calidad de la imagen
     const opciones = {
         quality: 50
     };
-    
     src('src/img/**/*.{png,jpg}')
         .pipe(webp(opciones))
         .pipe(dest('build/img'))
@@ -36,5 +48,6 @@ function dev(done){
     done();
 }
 exports.css=css;
+exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
-exports.dev = parallel(versionWebp, dev); //parallel hara que se ejecute al mismo tiempo en paralelo estas 2 funciones
+exports.dev = parallel(imagenes, versionWebp, dev); //parallel hara que se ejecute al mismo tiempo en paralelo estas 2 funciones
