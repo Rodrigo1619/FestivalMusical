@@ -8,6 +8,7 @@ const plumber = require('gulp-plumber');
 const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
+const avif = require('gulp-avif');
 
 function css(done){
     src('src/scss/**/*.scss') //identificar archivo de sass, los * identifican a los demas archivos scss
@@ -42,6 +43,18 @@ function versionWebp(done){
     done();
 }
 
+function versionAvif(done){
+    //opciones para la calidad de la imagen
+    const opciones = {
+        quality: 50
+    };
+    src('src/img/**/*.{png,jpg}')
+        .pipe(avif(opciones))
+        .pipe(dest('build/img'))
+
+    done();
+}
+
 function dev(done){
     watch('src/scss/**/*.scss', css)//esta al pendiente de todos los cambios en la carpeta scss
 
@@ -50,4 +63,6 @@ function dev(done){
 exports.css=css;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
-exports.dev = parallel(imagenes, versionWebp, dev); //parallel hara que se ejecute al mismo tiempo en paralelo estas 2 funciones
+exports.versionAvif = versionAvif;
+//parallel hara que se ejecute al mismo tiempo en paralelo estas 2 funciones
+exports.dev = parallel(imagenes, versionWebp, versionAvif,dev); 
