@@ -40,3 +40,6 @@ html{
 }
 ```
 Con este codigo se habilita que 1rem sea a 10px y es muchisimo mejor trabajar asi
+
+# Mejora de performance
+En la imagen se recomienda poner un width="200" height="300" en el html para que se muestre de inmediato la imagen, pero eso nos dara problemas, entonces en el css tenemos nuestras clases globales para las imagenes (_globales.scss) lo arreglamos poniendo un width de 100% y un height auto para que pueda ajustarse la imagen correctamente

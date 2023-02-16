@@ -43,16 +43,25 @@
     <!-- sobre festival -->
     <section class="contenedor sobre-festival">
         <div class="imagen">
-            <img src="img/imagen_vocalista.jpg" alt="Imagen Vocalista Festival">
+            <picture>
+                <!-- Para ganar en performance hacemos este fallback para que si no muestra avif, muestre webp, sino que muestre jpg -->
+                <source srcset="build/img/imagen_vocalista.avif" type="image/avif" >
+                <source srcset="build/img/imagen_vocalista.webp" type="image/webp" >
+
+                <!--Se recomienda poner ese width y height para mostrarlo inmediatamante y tener mejor performance, ya en css se arregla-->
+                <img width="200" height="300" src="build/img/imagen_vocalista.jpg" alt=" Imagen vocalista">
+            </picture>
         </div>
         <div class="contenido-festival">
             <h2>Rock & EDM Festival</h2>
             <p class="fecha">Febrero 2023, Soyapango, El Salvador</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aut saepe quos ducimus alias
                 tempore error doloremque itaque reiciendis voluptates iure, voluptatem aspernatur debitis in sit.
-                Ex dolores quisquam ad?</p>
-            
+                Ex dolores quisquam ad?</p>   
         </div>
     </section>
+
+    
+    
 </body>
 </html>
