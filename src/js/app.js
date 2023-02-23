@@ -4,6 +4,22 @@ document.addEventListener('DOMContentLoaded', function(){
 
 function iniciarApp(){
     crearGaleria();
+    scrollNav();
+}
+
+//Para que nos de un efecto de suavidad a la hora de ir a cada seccion
+function scrollNav(){
+    const enlaces = document.querySelectorAll('.navegacion-principal a');
+
+    enlaces.forEach(enlace=>{
+        enlace.addEventListener('click', function(e){
+            e.preventDefault();//evitamos que nos lleve de golpe a la seccion
+
+            const seccionScroll = e.target.attributes.href.value; //logramos sacar que el valor de el href
+            const seccion = document.querySelector(seccionScroll);
+            seccion.scrollIntoView({behavior:"smooth"});
+        })
+    })
 }
 
 function crearGaleria(){
