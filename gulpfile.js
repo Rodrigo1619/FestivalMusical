@@ -54,15 +54,26 @@ function versionAvif(done){
 
     done();
 }
+function javascript(done){
+    src('src/js/**/*.js') //identificamos el archivo que nos queremos llevar
+        .pipe(dest('build/js')); //lo mandamos a este directorio
+    
+        done();
+}
+
 
 function dev(done){
     watch('src/scss/**/*.scss', css)//esta al pendiente de todos los cambios en la carpeta scss
+    watch('src/js/**/*.js', javascript)//esta al pendiente de todos los cambios en la carpeta js
 
     done();
 }
+
+//exportaciones
 exports.css=css;
+exports.javascript = javascript
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-//parallel hara que se ejecute al mismo tiempo en paralelo estas 2 funciones
-exports.dev = parallel(imagenes, versionWebp, versionAvif,dev); 
+//parallel hara que se ejecute al mismo tiempo en paralelo estas funciones
+exports.dev = parallel(imagenes, versionWebp, versionAvif, javascript ,dev); 
