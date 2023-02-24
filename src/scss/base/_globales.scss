@@ -1,4 +1,5 @@
 @use 'variables' as v;
+@use 'base/mixins' as m;
 
 html{
     font-size: 62.5%;
@@ -18,6 +19,11 @@ body{
 
     &.fijar-body{
         overflow: hidden;
+    }
+    @include m.tablet {
+        &.body-scroll{
+            padding-top: 8.6rem;
+        }
     }
 }
 p{
