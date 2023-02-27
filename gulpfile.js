@@ -3,6 +3,10 @@ const {src, dest, watch, parallel} = require('gulp');
 //variables para compilar scss a css
 const sass = require("gulp-sass")(require('sass'));
 const plumber = require('gulp-plumber');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
 
 //para la conversion de imagenes
 const cache = require('gulp-cache');
@@ -12,8 +16,11 @@ const avif = require('gulp-avif');
 
 function css(done){
     src('src/scss/**/*.scss') //identificar archivo de sass, los * identifican a los demas archivos scss
+    .pipe(sourcemaps.init())//guarda referencia de donde se va guardando el codigo css
     .pipe(plumber()) //evita que se detenga el workflow si hay un error
     .pipe(sass()) //compilarlo con los pipes
+    .pipe(postcss([autoprefixer(), cssnano()])) //comprime nuestro codigo css
+    .pipe(sourcemaps.write('.')) //. para que se guarde en la misma ubicacion del css
     .pipe(dest("build/css"));//almacenar en disco duro con los dest
 
     done();//avisa cuando se ha llegado al final de la funcion y no de error en consola
