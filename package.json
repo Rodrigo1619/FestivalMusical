@@ -6,6 +6,7 @@
   "scripts": {
     "sass": "sass --watch src/scss:build/css",
     "css": "gulp css",
+    "js": "gulp js",
     "tarea": "gulp tarea",
     "dev": "gulp dev"
   },
@@ -25,5 +26,8 @@
     "gulp-webp": "^4.0.1",
     "postcss": "^8.4.21",
     "sass": "^1.58.0"
+  },
+  "dependencies": {
+    "gulp-terser-js": "^5.2.2"
   }
 }

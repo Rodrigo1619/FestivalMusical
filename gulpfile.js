@@ -8,6 +8,9 @@ const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 
+//variables para el performance de js
+const terser = require('gulp-terser-js');
+
 //para la conversion de imagenes
 const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin');
@@ -63,6 +66,9 @@ function versionAvif(done){
 }
 function javascript(done){
     src('src/js/**/*.js') //identificamos el archivo que nos queremos llevar
+        .pipe(sourcemaps.init())
+        .pipe(terser())
+        .pipe(sourcemaps.write('.'))
         .pipe(dest('build/js')); //lo mandamos a este directorio
     
         done();
@@ -78,7 +84,7 @@ function dev(done){
 
 //exportaciones
 exports.css=css;
-exports.javascript = javascript
+exports.js = javascript
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
